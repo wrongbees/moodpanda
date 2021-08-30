@@ -18,7 +18,7 @@ public class LoginPage {
     private static final By password_field = By.id("ContentPlaceHolderContent_TextBoxPassword");
     private static final By login_btn = By.id("ContentPlaceHolderContent_ButtonLogin");
 
-    public LoginPage getInstance() {
+    public static LoginPage getInstance() {
         if (instance == null) {
             instance = new LoginPage();
         }

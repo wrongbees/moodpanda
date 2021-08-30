@@ -7,6 +7,9 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
+import static com.codeborne.selenide.Selenide.open;
+
+
 public class BaseTest {
 
     @BeforeSuite
@@ -26,7 +29,9 @@ public class BaseTest {
         Configuration.baseUrl = ReadProperties.getInstance().getURL();
         Configuration.browser = ReadProperties.getInstance().getBrowserName();
         Configuration.startMaximized = true;
-        Configuration.headless = true;
+        //Configuration.headless = true;
         Configuration.fastSetValue = false;
+
+        open("/");
     }
 }

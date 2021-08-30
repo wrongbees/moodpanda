@@ -17,6 +17,7 @@ public class LoginPage {
     private static final By email_field = By.id("ContentPlaceHolderContent_TextBoxEmail");
     private static final By password_field = By.id("ContentPlaceHolderContent_TextBoxPassword");
     private static final By login_btn = By.id("ContentPlaceHolderContent_ButtonLogin");
+    private static final By create_account_link = By.id("ContentPlaceHolderContent_HyperLinkRegister");
 
     public static LoginPage getInstance() {
         if (instance == null) {
@@ -39,6 +40,10 @@ public class LoginPage {
 
     private SelenideElement getLoginBtn() {
         return $(login_btn);
+    }
+
+    private SelenideElement getCreateAccount(){
+        return $(create_account_link);
     }
 
     public String getTitleText() {
@@ -78,6 +83,12 @@ public class LoginPage {
                 .shouldBe(Condition.enabled)
                 .click();
         return FeedPage.getInstance();
+    }
+
+    public void clickCreateLoginLink() {
+        getCreateAccount()
+                .shouldBe(Condition.enabled)
+                .click();
     }
 
 }

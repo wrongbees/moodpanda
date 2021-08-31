@@ -44,6 +44,18 @@ public final class ReadProperties {
         return properties.getProperty("email");
     }
 
+    public String getFirstName() {
+        return properties.getProperty("firstName");
+    }
+
+    public String getSurName() { return properties.getProperty("surName");
+    }
+    public String getGender() {
+        return properties.getProperty("gender");
+    }
+    public String getYearOfBirth() {
+        return properties.getProperty("yearOfBirth");
+    }
     public String getPassword() {
         return properties.getProperty("password");
     }

@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import models.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,14 +12,13 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class RegisterPage {
     private static RegisterPage instance;
-    private static WebDriver driver;
 
     private static final String endpoint = "/Register/";
 
     private static final By title = By.xpath("//*[contains(text(),'Create MoodPanda Account')]");
     private static final By first_name_field = By.id("ContentPlaceHolderContent_TextBoxFirstName");
     private static final By surname_initial_field = By.id("ContentPlaceHolderContent_TextBoxSurname");
-    private static final By gender_selector = By.id("ContentPlaceHolderContent_ButtonLogin");
+    private static final By gender_selector = By.id("ContentPlaceHolderContent_DropDownListGender");
     private static final By year_of_birth_selector = By.id("ContentPlaceHolderContent_DropDownListYearOfBirth");
     private static final By email_field = By.id("ContentPlaceHolderContent_TextBoxEmail");
     private static final By password_field = By.id("ContentPlaceHolderContent_TextBoxPassword");
@@ -29,8 +29,6 @@ public class RegisterPage {
         if (instance == null) {
             instance = new RegisterPage();
         }
-
-        driver = $(title).shouldBe(Condition.visible).getWrappedDriver();
 
         return instance;
     }
@@ -60,11 +58,11 @@ public class RegisterPage {
     }
 
     private WebElement getGenderSelector() {
-        return driver.findElement(gender_selector);
+        return $(gender_selector).getWrappedDriver().findElement(gender_selector);
     }
 
     private WebElement getYearOfBirthSelector() {
-        return driver.findElement(year_of_birth_selector);
+        return $(year_of_birth_selector).getWrappedDriver().findElement(year_of_birth_selector);
     }
 
 
@@ -72,6 +70,14 @@ public class RegisterPage {
         getFirstNameField()
                 .shouldBe(Condition.enabled)
                 .sendKeys(name);
+
+        return instance;
+    }
+
+    public RegisterPage setFirstName(User user) {
+        getFirstNameField()
+                .shouldBe(Condition.visible)
+                .sendKeys(user.getFirstName());
 
         return instance;
     }
@@ -84,10 +90,26 @@ public class RegisterPage {
         return instance;
     }
 
+    public RegisterPage setSurnameInitial(User user) {
+        getSurnameInitialField()
+                .shouldBe(Condition.enabled)
+                .sendKeys(user.getSurName());
+
+        return instance;
+    }
+
     public RegisterPage setPasswordField(String password) {
         getPasswordField()
                 .shouldBe(Condition.enabled)
                 .sendKeys(password);
+
+        return instance;
+    }
+
+    public RegisterPage setPasswordField(User user) {
+        getPasswordField()
+                .shouldBe(Condition.enabled)
+                .sendKeys(user.getPassword());
 
         return instance;
     }
@@ -100,10 +122,26 @@ public class RegisterPage {
         return instance;
     }
 
+    public RegisterPage setConfirmPasswordField(User user) {
+        getConfirmPasswordField()
+                .shouldBe(Condition.enabled)
+                .sendKeys(user.getPassword());
+
+        return instance;
+    }
+
     public RegisterPage setEmailField(String email) {
         getEmailField()
                 .shouldBe(Condition.enabled)
                 .sendKeys(email);
+
+        return instance;
+    }
+
+    public RegisterPage setEmailField(User user) {
+        getEmailField()
+                .shouldBe(Condition.enabled)
+                .sendKeys(user.getEmail());
 
         return instance;
     }
@@ -116,13 +154,30 @@ public class RegisterPage {
         return instance;
     }
 
-    public RegisterPage setYearOfBirthSelector(String birthday){
+    public RegisterPage setGenderSelector(User user){
 
         Select select = new Select(getGenderSelector());
+        select.selectByVisibleText(user.getGender());
+
+        return instance;
+    }
+
+    public RegisterPage setYearOfBirthSelector(String birthday){
+
+        Select select = new Select(getYearOfBirthSelector());
         select.selectByVisibleText(birthday);
 
         return instance;
     }
+
+    public RegisterPage setYearOfBirthSelector(User user){
+
+        Select select = new Select(getYearOfBirthSelector());
+        select.selectByVisibleText(user.getYearOfBirth());
+
+        return instance;
+    }
+
 
     public WelcomePage loginClick(){
         getLogin()

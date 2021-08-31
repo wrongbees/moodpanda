@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import core.ReadProperties;
+import models.User;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -57,10 +58,10 @@ public class LoginPage {
         return instance;
     }
 
-    public LoginPage setEmailField() {
+    public LoginPage setEmailField(User user) {
         getEmailField()
                 .shouldBe(Condition.visible)
-                .sendKeys(ReadProperties.getInstance().getEmail());
+                .sendKeys(user.getEmail());
         return instance;
     }
 
@@ -71,12 +72,13 @@ public class LoginPage {
         return instance;
     }
 
-    public LoginPage setPasswordField() {
+    public LoginPage setPasswordField(User user) {
         getPasswordField()
                 .shouldBe(Condition.visible)
-                .sendKeys(ReadProperties.getInstance().getPassword());
+                .sendKeys(user.getPassword());
         return instance;
     }
+
 
     public FeedPage clickLoginButton() {
         getLoginBtn()
@@ -85,10 +87,12 @@ public class LoginPage {
         return FeedPage.getInstance();
     }
 
-    public void clickCreateLoginLink() {
+    public RegisterPage clickCreateLoginLink() {
         getCreateAccount()
                 .shouldBe(Condition.enabled)
                 .click();
+
+        return RegisterPage.getInstance();
     }
 
 }

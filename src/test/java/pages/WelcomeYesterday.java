@@ -6,17 +6,16 @@ import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
+public class WelcomeYesterday {
+    private static WelcomeYesterday instance;
 
-public class WelcomePage {
-    private static  WelcomePage instance;
-
-    private static final String endpoint = "/Welcome/";
+    private static final String endpoint = "/Welcome/Yesterday/";
 
     private static final By update_mood_btn = By.id("//div[@id='UpdateMoodWelcome']//button");
 
-    public static WelcomePage getInstance() {
+    public static WelcomeYesterday getInstance() {
         if (instance == null) {
-            instance = new WelcomePage();
+            instance = new WelcomeYesterday();
         }
         return instance;
     }
@@ -25,10 +24,11 @@ public class WelcomePage {
         return $(update_mood_btn);
     }
 
-    public WelcomeYesterday updateMoodClick(){
+    public WelcomeNowPage updateMoodClick(){
         getUpdateMood()
                 //.shouldBe(Condition.enabled)
                 .click();
-        return WelcomeYesterday.getInstance();
+
+        return WelcomeNowPage.getInstance();
     }
 }

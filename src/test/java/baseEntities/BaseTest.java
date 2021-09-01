@@ -5,10 +5,9 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import core.ReadProperties;
 import io.qameta.allure.selenide.AllureSelenide;
 import models.User;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
-
-import static com.codeborne.selenide.Selenide.open;
 
 
 public class BaseTest {
@@ -22,7 +21,6 @@ public class BaseTest {
                 .savePageSource(true)
         );
 
-        // Настройка slf4j
         org.apache.log4j.BasicConfigurator.configure();
     }
 
@@ -43,13 +41,13 @@ public class BaseTest {
 
     @BeforeTest
     public void setUp() {
-        // Настройка Selenide
+
         Configuration.baseUrl = ReadProperties.getInstance().getURL();
         Configuration.browser = ReadProperties.getInstance().getBrowserName();
         Configuration.startMaximized = true;
-        //Configuration.headless = true;
+        Configuration.headless = false;
         Configuration.fastSetValue = true;
 
-        open("/");
     }
+
 }

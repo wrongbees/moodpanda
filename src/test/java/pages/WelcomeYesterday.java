@@ -11,7 +11,7 @@ public class WelcomeYesterday {
 
     private static final String endpoint = "/Welcome/Yesterday/";
 
-    private static final By update_mood_btn = By.id("//div[@id='UpdateMoodWelcome']//button");
+    private static final By update_mood_btn = By.xpath("//div[@id='UpdateMoodWelcome']//button");
 
     public static WelcomeYesterday getInstance() {
         if (instance == null) {
@@ -20,13 +20,13 @@ public class WelcomeYesterday {
         return instance;
     }
 
-    private SelenideElement getUpdateMood(){
+    private SelenideElement getUpdateMood() {
         return $(update_mood_btn);
     }
 
-    public WelcomeNowPage updateMoodClick(){
+    public WelcomeNowPage updateMoodClick() {
         getUpdateMood()
-                //.shouldBe(Condition.enabled)
+                .shouldBe(Condition.enabled)
                 .click();
 
         return WelcomeNowPage.getInstance();

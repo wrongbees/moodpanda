@@ -8,11 +8,11 @@ import static com.codeborne.selenide.Selenide.$;
 
 
 public class WelcomePage {
-    private static  WelcomePage instance;
+    private static WelcomePage instance;
 
     private static final String endpoint = "/Welcome/";
 
-    private static final By update_mood_btn = By.id("//div[@id='UpdateMoodWelcome']//button");
+    private static final By update_mood_btn = By.xpath("//div[@id='UpdateMoodWelcome']//button");
 
     public static WelcomePage getInstance() {
         if (instance == null) {
@@ -21,13 +21,13 @@ public class WelcomePage {
         return instance;
     }
 
-    private SelenideElement getUpdateMood(){
+    private SelenideElement getUpdateMood() {
         return $(update_mood_btn);
     }
 
-    public WelcomeYesterday updateMoodClick(){
+    public WelcomeYesterday updateMoodClick() {
         getUpdateMood()
-                //.shouldBe(Condition.enabled)
+                .shouldBe(Condition.enabled)
                 .click();
         return WelcomeYesterday.getInstance();
     }

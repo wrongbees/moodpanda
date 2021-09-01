@@ -19,7 +19,7 @@ public class FeedMyPage {
         return instance;
     }
 
-    public SelenideElement getFullName(){
+    public SelenideElement getFullName() {
         return $(full_name);
     }
 

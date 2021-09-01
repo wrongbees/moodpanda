@@ -2,7 +2,6 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import core.ReadProperties;
 import models.User;
 import org.openqa.selenium.By;
 
@@ -19,6 +18,7 @@ public class LoginPage {
     private static final By password_field = By.id("ContentPlaceHolderContent_TextBoxPassword");
     private static final By login_btn = By.id("ContentPlaceHolderContent_ButtonLogin");
     private static final By create_account_link = By.id("ContentPlaceHolderContent_HyperLinkRegister");
+    private static final By error_title = By.id("ContentPlaceHolderContent_MessageError");
 
     public static LoginPage getInstance() {
         if (instance == null) {
@@ -29,6 +29,10 @@ public class LoginPage {
 
     private SelenideElement getTitle() {
         return $(title);
+    }
+
+    public SelenideElement getErrorTitle() {
+        return $(error_title);
     }
 
     private SelenideElement getEmailField() {
@@ -43,7 +47,7 @@ public class LoginPage {
         return $(login_btn);
     }
 
-    private SelenideElement getCreateAccount(){
+    private SelenideElement getCreateAccount() {
         return $(create_account_link);
     }
 
@@ -80,11 +84,18 @@ public class LoginPage {
     }
 
 
-    public FeedPage clickLoginButton() {
+    public FeedPage successfulClickLoginButton() {
         getLoginBtn()
                 .shouldBe(Condition.enabled)
                 .click();
         return FeedPage.getInstance();
+    }
+
+    public LoginPage unsuccessfulClickLoginButton() {
+        getLoginBtn()
+                .shouldBe(Condition.enabled)
+                .click();
+        return instance;
     }
 
     public RegisterPage clickCreateLoginLink() {
@@ -95,4 +106,7 @@ public class LoginPage {
         return RegisterPage.getInstance();
     }
 
+
 }
+
+

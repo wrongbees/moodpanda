@@ -4,10 +4,8 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import models.User;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-
 import static com.codeborne.selenide.Selenide.$;
 
 public class RegisterPage {
@@ -24,6 +22,8 @@ public class RegisterPage {
     private static final By password_field = By.id("ContentPlaceHolderContent_TextBoxPassword");
     private static final By confirm_password_field = By.id("ContentPlaceHolderContent_TextBoxPasswordConfirm");
     private static final By login_btn = By.id("ContentPlaceHolderContent_ButtonLogin");
+    private static final By error_title = By.xpath("//*[@id = 'ContentPlaceHolderContent_MessageExists']");
+
 
     public static RegisterPage getInstance() {
         if (instance == null) {
@@ -35,6 +35,10 @@ public class RegisterPage {
 
     private SelenideElement getLogin() {
         return $(login_btn);
+    }
+
+    public SelenideElement getErrorTitle() {
+        return $(error_title);
     }
 
     private SelenideElement getFirstNameField() {
@@ -146,7 +150,7 @@ public class RegisterPage {
         return instance;
     }
 
-    public RegisterPage setGenderSelector(String gender){
+    public RegisterPage setGenderSelector(String gender) {
 
         Select select = new Select(getGenderSelector());
         select.selectByVisibleText(gender);
@@ -154,7 +158,7 @@ public class RegisterPage {
         return instance;
     }
 
-    public RegisterPage setGenderSelector(User user){
+    public RegisterPage setGenderSelector(User user) {
 
         Select select = new Select(getGenderSelector());
         select.selectByVisibleText(user.getGender());
@@ -162,7 +166,7 @@ public class RegisterPage {
         return instance;
     }
 
-    public RegisterPage setYearOfBirthSelector(String birthday){
+    public RegisterPage setYearOfBirthSelector(String birthday) {
 
         Select select = new Select(getYearOfBirthSelector());
         select.selectByVisibleText(birthday);
@@ -170,7 +174,7 @@ public class RegisterPage {
         return instance;
     }
 
-    public RegisterPage setYearOfBirthSelector(User user){
+    public RegisterPage setYearOfBirthSelector(User user) {
 
         Select select = new Select(getYearOfBirthSelector());
         select.selectByVisibleText(user.getYearOfBirth());
@@ -179,10 +183,23 @@ public class RegisterPage {
     }
 
 
-    public WelcomePage loginClick(){
+    public WelcomePage loginSuccessfulClick() {
         getLogin()
                 .shouldBe(Condition.visible)
                 .click();
         return WelcomePage.getInstance();
+    }
+
+    public RegisterPage loginUnsuccessfulClick() {
+        getLogin()
+                .shouldBe(Condition.visible)
+                .click();
+        return instance;
+    }
+
+    public String getErrorText() {
+        return getErrorTitle()
+                .shouldBe(Condition.visible)
+                .getText();
     }
 }

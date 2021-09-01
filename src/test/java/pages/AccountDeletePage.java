@@ -15,23 +15,23 @@ public class AccountDeletePage {
     private static final By your_password_field = By.id("ContentPlaceHolderContent_TextBoxPassword");
     private static final By delete_account_btn = By.id("ContentPlaceHolderContent_ButtonSave");
 
-    public static AccountDeletePage getInstance(){
+    public static AccountDeletePage getInstance() {
 
-        if (instance == null){
+        if (instance == null) {
             instance = new AccountDeletePage();
         }
         return instance;
     }
 
-    private SelenideElement getYourPasswordField(){
+    private SelenideElement getYourPasswordField() {
         return $(your_password_field);
     }
 
-    private SelenideElement getDeleteAccountButton(){
+    private SelenideElement getDeleteAccountButton() {
         return $(delete_account_btn);
     }
 
-    public AccountDeletePage setYourPasswordField(User user){
+    public AccountDeletePage setYourPasswordField(User user) {
         getYourPasswordField()
                 .shouldBe(Condition.visible)
                 .sendKeys(user.getPassword());
@@ -39,7 +39,7 @@ public class AccountDeletePage {
         return instance;
     }
 
-    public void DeleteAccountButton(){
+    public void DeleteAccountButton() {
         getDeleteAccountButton()
                 .shouldBe(Condition.visible)
                 .click();

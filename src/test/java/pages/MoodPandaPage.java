@@ -28,5 +28,4 @@ public class MoodPandaPage {
                 .click();
         return LoginPage.getInstance();
     }
-
 }

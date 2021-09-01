@@ -105,8 +105,6 @@ public class LoginPage {
 
         return RegisterPage.getInstance();
     }
-
-
 }
 
 

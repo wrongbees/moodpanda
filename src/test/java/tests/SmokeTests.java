@@ -37,7 +37,6 @@ public class SmokeTests extends BaseTest {
                 .shouldBe(Condition.visible)
                 .shouldHave(Condition.exactText(String.format("%s %s", user.getFirstName(), user.getSurName())))
                 .getWrappedDriver().close();
-
     }
 
     @Test(dependsOnMethods = "loginTest")
@@ -61,7 +60,6 @@ public class SmokeTests extends BaseTest {
                 getErrorTitle()
                 .shouldHave(Condition.exactOwnText("This email is already registed with MoodPanda"))
                 .getWrappedDriver().close();
-
     }
 
     @Test(dependsOnMethods = "reСreateАnАccount")

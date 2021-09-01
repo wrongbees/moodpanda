@@ -22,6 +22,4 @@ public class FeedMyPage {
     public SelenideElement getFullName() {
         return $(full_name);
     }
-
-
 }

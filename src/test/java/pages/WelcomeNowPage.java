@@ -20,6 +20,7 @@ public class WelcomeNowPage {
 
     public static WelcomeNowPage getInstance() {
         if (instance == null) {
+            $(title).shouldBe(Condition.visible);
             instance = new WelcomeNowPage();
         }
         return instance;

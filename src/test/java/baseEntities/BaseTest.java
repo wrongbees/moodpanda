@@ -5,7 +5,7 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import core.ReadProperties;
 import io.qameta.allure.selenide.AllureSelenide;
 import models.User;
-import org.openqa.selenium.WebDriver;
+
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 

@@ -1,5 +1,6 @@
 package tests;
 
+
 import baseEntities.BaseTest;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Description;
@@ -15,7 +16,7 @@ public class SmokeTests extends BaseTest {
 
 
     @Test
-    @Description("Позитивный тест на создние пользователя")
+   // @Description("Позитивный тест на создние пользователя")
     public void loginTest() {
         open("/");
         FeedMyPage feedMyPage = MoodPandaPage.getInstance()

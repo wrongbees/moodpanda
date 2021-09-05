@@ -14,9 +14,13 @@ public class WelcomeNowPage {
     private static final String endpoint = "/Welcome/Now/";
 
     private static final By update_mood_btn = By.xpath("//div[@id='UpdateMoodWelcome']//button");
+    private static final By title = By.xpath("//*[contains(text(), '3 of 3: How are you feeling right now?')]");
+
+    
 
     public static WelcomeNowPage getInstance() {
         if (instance == null) {
+            $(title).shouldBe(Condition.visible);
             instance = new WelcomeNowPage();
         }
         return instance;
@@ -29,6 +33,7 @@ public class WelcomeNowPage {
     public FeedMyPage updateMoodClick() {
         getUpdateMood()
                 .shouldBe(Condition.enabled)
+                .shouldBe(Condition.visible)
                 .click();
         return FeedMyPage.getInstance();
     }
